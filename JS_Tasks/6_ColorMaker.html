@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Maker</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .color-box {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .counter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .txt {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="color-box" id="color-box">
+        <div class="counter">
+            <div class="slider-container">
+                <label class="label">Red: <span id="red-value" class="value">0</span></label>
+                <input type="range" id="red" class="slider" min="0" max="255" value="0">
+            </div>
+            <div class="slider-container">
+                <label class="label">Green: <span id="green-value" class="value">0</span></label>
+                <input type="range" id="green" class="slider" min="0" max="255" value="0">
+            </div>
+            <div class="slider-container">
+                <label class="label">Blue: <span id="blue-value" class="value">0</span></label>
+                <input type="range" id="blue" class="slider" min="0" max="255" value="0">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const redSlider = document.getElementById('red');
+        const greenSlider = document.getElementById('green');
+        const blueSlider = document.getElementById('blue');
+
+        const redValue = document.getElementById('red-value');
+        const greenValue = document.getElementById('green-value');
+        const blueValue = document.getElementById('blue-value');
+
+        const colorBox = document.getElementById('color-box');
+
+        function updateColor() {
+            const r = redSlider.value;
+            const g = greenSlider.value;
+            const b = blueSlider.value;
+
+            redValue.textContent = r;
+            greenValue.textContent = g;
+            blueValue.textContent = b;
+
+            colorBox.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            console.log(`rgb(${r}, ${g}, ${b})`);
+        }
+
+        redSlider.addEventListener('input', updateColor);
+        greenSlider.addEventListener('input', updateColor);
+        blueSlider.addEventListener('input', updateColor);
+
+        // Initialize color box
+        updateColor();
+    </script>
+</body>
+
+</html>

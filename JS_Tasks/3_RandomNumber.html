@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <p id="random"></p>
+    </div>
+
+    <script>
+        let random = document.getElementById("random")
+        let num = parseInt(Math.random() * 10000)
+        console.log(num);
+        random.innerHTML = num
+    </script>
+</body>
+</html>

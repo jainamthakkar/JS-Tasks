@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .counter {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 5px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .txt {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="counter">
+            <div>
+                <input placeholder="Enter Number 1" type="number" value="0" id="num1">
+                <input placeholder="Enter Number 2" type="number" value="0" id="num2">
+                <input placeholder="Enter Number 3" type="number" value="0" id="num3">
+            </div>
+            <h2 id="result"></h2>
+            <div>
+                <input type="button" class="btn" value="+" onclick="sum()">
+                <input type="button" class="btn" value="-" onclick="sub()">
+                <input type="button" class="btn" value="*" onclick="mul()">
+                <input type="button" class="btn" value="/" onclick="div()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sum(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let num3 = parseFloat(document.getElementById("num3").value);
+            let result = document.getElementById("result");
+            result.innerHTML = num1 + num2 + num3;
+        }
+
+        function sub(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let num3 = parseFloat(document.getElementById("num3").value);
+            let result = document.getElementById("result");
+            result.innerHTML = num1 - num2 - num3;
+        }
+
+        function mul(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let num3 = parseFloat(document.getElementById("num3").value);
+            let result = document.getElementById("result");
+            result.innerHTML = num1 * num2 * num3;
+        }
+
+        function div(){
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let num3 = parseFloat(document.getElementById("num3").value);
+            let result = document.getElementById("result");
+            if(num2 === 0 || num3 === 0) {
+                result.innerHTML = "Cannot divide by zero";
+            } else {
+                result.innerHTML = num1 / num2 / num3;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

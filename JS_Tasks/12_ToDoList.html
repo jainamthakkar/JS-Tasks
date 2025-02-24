@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO List</title>
+</head>
+<style>
+    body {
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        gap: 20px;
+        height: 50px;
+        width: 320px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        font-size: 24px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .txt {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .todo-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .todo-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 12px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .todo-list li span {
+        flex: 1;
+        margin-right: 10px;
+        padding-right: 10px;
+        font-size: 18px;
+    }
+
+    .todo-list button {
+        background-color: #ff5733;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 10px;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .todo-list button.edit-btn {
+        background-color: #f0ad4e;
+    }
+
+    .todo-list button:hover {
+        background-color: #e74c3c;
+    }
+
+    .todo-list button.edit-btn:hover {
+        background-color: #f39c12;
+    }
+
+    #txt1 {
+        padding: 6px;
+        margin: 5px 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 200px;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="counter">
+            <input type="text" id="txt1" placeholder="Enter some Text">
+            <input type="button" id="addText" class="btn" value="Add" onclick="addText()">
+        </div>
+
+        <ul class="todo-list" id="todoList">
+        </ul>
+    </div>
+
+    <script>
+        function addText() {
+            const txt1 = document.getElementById('txt1').value;
+            if (txt1 === "") {
+                alert("Please enter some text.");
+                return;
+            }
+
+            const todoList = document.getElementById('todoList');
+
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = txt1;
+            li.appendChild(span);
+
+            const editButton = document.createElement('button');
+            editButton.textContent = "Edit";
+            editButton.classList.add("edit-btn");
+            editButton.onclick = function () { editTodoItem(li, span); };
+            li.appendChild(editButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () { deleteTodoItem(li); };
+            li.appendChild(deleteButton);
+
+            todoList.appendChild(li);
+
+            document.getElementById('txt1').value = "";
+        }
+
+        function editTodoItem(li, span) {
+            const newText = prompt("Edit your to-do:", span.textContent);
+            if (newText !== null && newText !== "") {
+                span.textContent = newText;
+            }
+        }
+
+        function deleteTodoItem(li) {
+            li.remove();
+        }
+    </script>
+
+</body>
+
+</html>

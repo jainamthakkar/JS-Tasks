@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <style>
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 400px;
+        }
+        .container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .container input, .container select, .container button {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .output-container {
+            margin-top: 20px;
+        }
+        .hobby input {
+            margin-right: 10px;
+        }
+        .gender input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fill the form</h2>
+        <form id="myForm" onsubmit="return validateForm()">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            
+            <label for="mobileNo">Mobile No:</label>
+            <input type="text" id="mobileNo" name="mobileNo" required>
+
+            <label>Gender:</label>
+            <div class="gender">
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="gender" value="Female">
+            </div>
+
+            <label>Hobby:</label>
+            <div class="hobby">
+                <label for="reading">Reading</label>
+                <input type="checkbox" id="reading" name="hobby" value="Reading">
+                <label for="dancing">Dancing</label>
+                <input type="checkbox" id="dancing" name="hobby" value="Dancing">
+                <label for="singing">Singing</label>
+                <input type="checkbox" id="singing" name="hobby" value="Singing">
+            </div>
+
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+                <option value="">Select City</option>
+                <option value="Ahemadabad">Ahemadabad</option>
+                <option value="Surat">Surat</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="output-container" id="output"></div>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById("firstName").value;
+            const mobileNo = document.getElementById("mobileNo").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const hobbies = [];
+            document.querySelectorAll('input[name="hobby"]:checked').forEach(checkbox => hobbies.push(checkbox.value));
+            const city = document.getElementById("city").value;
+
+            if (!firstName || !mobileNo || !gender || !hobbies.length || !city) {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            if (!/^\d{10}$/.test(mobileNo)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false;
+            }
+
+            displayData(firstName, mobileNo, gender.value, hobbies, city);
+            return false; 
+        }
+
+        function displayData(firstName, mobileNo, gender, hobbies, city) {
+            const output = document.getElementById("output");
+            output.innerHTML = `
+                <h3>Submitted Data:</h3>
+                <p><strong>First Name:</strong> ${firstName}</p>
+                <p><strong>Mobile No:</strong> ${mobileNo}</p>
+                <p><strong>Gender:</strong> ${gender}</p>
+                <p><strong>Hobbies:</strong> ${hobbies.join(', ')}</p>
+                <p><strong>City:</strong> ${city}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

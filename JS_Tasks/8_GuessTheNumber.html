@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+</head>
+<body>
+
+    <div class="main">
+        <div class="box">
+            Enter number: <input type="number" id="guessedNum">
+            <input type="button" value="Validate" onclick="validateNumber()">
+            <h3 id="txt1"></h3>
+            <h5 id="txt2"></h5>
+        </div>
+    </div>
+    
+    <script>
+
+        let randomNum = parseInt(Math.random() * 10)
+        console.log(randomNum)
+        let count = 0
+        let result = document.getElementById("txt1")
+        let txt2 = document.getElementById("txt2")
+       
+       function validateNumber(){
+            let guessedNum = parseInt(document.getElementById("guessedNum").value);
+            console.log(guessedNum);
+            
+            if(guessedNum < 0 || guessedNum > 10){
+                result.innerText = "Guess number between 0 to 10"
+                return;
+            }
+            count = count+1
+
+            if(guessedNum === randomNum){
+                result.innerText = "Yehh! You Guessed correct!!"
+                txt2.innerText = "Total number of guesses:" + count
+            }else if(guessedNum > randomNum){
+                result.innerText = "Try guessing a smaller number!!"
+                txt2.innerText = "Total number of guesses:" + count
+            }else{
+                result.innerText = "Try guessing a bigger number!!!"
+                txt2.innerText = "Total number of guesses:" + count
+            }
+       } 
+
+    </script>
+</body>
+</html>
