@@ -1,0 +1,13 @@
+.currency-converter {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.converter-form {
+  margin-top: 20px;
+}
+
+input, select {
+  padding: 10px;
+  margin: 10px;
+}
